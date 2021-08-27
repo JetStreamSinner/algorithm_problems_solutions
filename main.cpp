@@ -1,5 +1,5 @@
 #include <iostream>
-#include "balance_parentheses.h"
+#include "generate_parentheses.h"
 
 template<typename T>
 void checkTestCase(const T &received, const T &expected, const std::string &description)
@@ -13,12 +13,9 @@ void checkTestCase(const T &received, const T &expected, const std::string &desc
     std::cout << "[Description: " << description << "]" << std::endl;
 }
 
+
 int main(int argc, char * argv[])
 {
-    checkTestCase(BalanceParentheses().minInsertions(")))))))"), 5, ")))))))");
-    checkTestCase(BalanceParentheses().minInsertions("(((((("), 12, "((((((");
-    checkTestCase(BalanceParentheses().minInsertions("(()))"), 1, "(()))");
-    checkTestCase(BalanceParentheses().minInsertions("())"), 0, "())");
-    checkTestCase(BalanceParentheses().minInsertions("))())("), 3, "))())(");
+    GenerateParentheses().generateParenthesis(4);
     return 0;
 }
