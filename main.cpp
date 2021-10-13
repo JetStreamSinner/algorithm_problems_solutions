@@ -1,5 +1,4 @@
 #include <iostream>
-#include "linked_list_cycle.h"
 
 template<typename T>
 void checkTestCase(const T &received, const T &expected, const std::string &description)
@@ -15,5 +14,6 @@ void checkTestCase(const T &received, const T &expected, const std::string &desc
 
 int main(int argc, char * argv[])
 {
+
     return 0;
 }
