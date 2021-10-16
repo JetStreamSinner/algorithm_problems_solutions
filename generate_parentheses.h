@@ -4,7 +4,7 @@
 #include <unordered_map>
 
 // Generate Parentheses
-//Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+// Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
 void generateParenthesisImpl(std::vector<std::string> &result, std::string tempString, char currentCharacter, std::unordered_map<char, int> &pairs, int openedCount)
 {
