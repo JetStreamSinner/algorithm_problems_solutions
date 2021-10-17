@@ -10,7 +10,7 @@
     "Wrong. Expect: " + expect + " result: " + result                                          \
     ) << std::endl;
 
-int solution(std::string text)
+int solution(const std::string &text)
 {
     std::string forwardWord;
     std::string backwardWord;
