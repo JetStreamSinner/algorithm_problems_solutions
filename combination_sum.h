@@ -35,7 +35,8 @@ public:
         return fst == scnd;
     }
 
-    bool containSame(const std::vector<std::vector<int>> &source, const std::vector<int> &vec)
+    template<typename T>
+    bool containSame(const std::vector<std::vector<T>> &source, const std::vector<T> &vec)
     {
         return std::any_of(source.begin(), source.end(), [&](const auto &sourceItem){
             return compareVectorsItems(sourceItem, vec);
