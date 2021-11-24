@@ -15,66 +15,29 @@ class Solution
 {
 public:
 
-    int calculateVectorSum(const std::vector<int> &vec)
-    {
-        auto result = 0;
-        for (auto value : vec)
-            result += value;
-        return result;
-    }
-
-    template<typename T>
-    bool compareVectorsItems(const std::vector<T> &v1, const std::vector<T> &v2)
-    {
-        auto fst = v1;
-        std::sort(fst.begin(), fst.end());
-
-        auto scnd = v2;
-        std::sort(scnd.begin(), scnd.end());
-
-        return fst == scnd;
-    }
-
-    template<typename T>
-    bool containSame(const std::vector<std::vector<T>> &source, const std::vector<T> &vec)
-    {
-        return std::any_of(source.begin(), source.end(), [&](const auto &sourceItem){
-            return compareVectorsItems(sourceItem, vec);
-        });
-    }
-
     template<typename Vector>
     void backtrack(int startIndex, Vector &&current, std::vector<std::vector<int>> &result, const std::vector<int> &candidates, int target)
     {
-        int currentCombinationSum = calculateVectorSum(current);
-
-        if (currentCombinationSum > target) {
-            return;
-        } else if (currentCombinationSum == target) {
-            if (!containSame(result, current))
-                result.push_back(current);
-            return;
-        }
-
-        const auto itemsCount = candidates.size();
-        for (auto index = startIndex; index < itemsCount; ++index) {
-
-            if (current.empty() && index != startIndex)
-                return;
-
-            current.push_back(candidates.at(index));
-            backtrack(startIndex, current, result, candidates, target);
-            current.pop_back();
+        if (target == 0) {
+            result.push_back(current);
+        } else {
+            const auto itemsCount = candidates.size();
+            for (auto index = startIndex; index < itemsCount && target >= candidates.at(index); ++index) {
+                current.push_back(candidates.at(index));
+                backtrack(index, current, result, candidates, target - candidates.at(index));
+                current.pop_back();
+            }
         }
     }
 
     std::vector<std::vector<int>> combinationSum(const std::vector<int>& candidates, int target)
     {
-        const auto itemsCount = candidates.size();
-        std::vector<std::vector<int>> result;
+        auto source = candidates;
+        std::sort(source.begin(), source.end());
+        const auto itemsCount = source.size();
 
-        for (auto index = 0; index < itemsCount; ++index)
-            backtrack(index, std::vector<int>{}, result, candidates, target);
+        std::vector<std::vector<int>> result;
+        backtrack(0, std::vector<int>{}, result, source, target);
 
         return result;
     }
