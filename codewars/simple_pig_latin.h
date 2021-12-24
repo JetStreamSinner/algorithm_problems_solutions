@@ -51,7 +51,9 @@ public:
             std::string firstCharacter(start, next);
             std::string appendable(next, end);
 
-            result += appendable + *start + suffix + ender;
+            std::stringstream handledToken;
+            handledToken << appendable << *start << suffix << ender;
+            result += handledToken.str();
         }
         return result;
     }
