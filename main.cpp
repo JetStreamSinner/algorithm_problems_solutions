@@ -3,9 +3,14 @@
 #include "utils/pretty_print.h"
 #include "codewars/simple_pig_latin.h"
 
-template<typename T = std::basic_string<char>, typename DescrT>
-void checkTestCase(T&& received, T&& expected, DescrT&& description)
+template<typename T>
+void checkTestCase(const T& received, const T& expected, const std::string& description)
 {
+
+    if constexpr (std::is_same_v<bool, T>) {
+        std::cout << std::boolalpha;
+    }
+
     std::cout << "[Status: ";
     if (expected == received)
         std::cout << "Success] ";
