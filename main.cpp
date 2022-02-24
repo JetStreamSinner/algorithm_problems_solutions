@@ -4,7 +4,7 @@
 #include <thread>
 #include "utils/pretty_print.h"
 
-#include "sberfight/task_3.h"
+#include "sberfight/task_4.h"
 
 template<typename T, typename U>
 void checkTestCase(const T& received, const U& expected, const std::string& description)
@@ -33,52 +33,36 @@ int main(int argc, char * argv[])
 {
     signal(SIGSEGV, segfaultHandler);
 
-    std::vector<int> test_case_1 = {1, 2, 3, 4};
-    checkTestCase(Solution().getResult(test_case_1, 1), 4, "Sample ordered test case");
+    std::vector<int> test_case_1 = {0, 2, 4, 1, 6, 2};
+    checkTestCase(Solution().getResult(test_case_1), true, "Sample test case 1");
+
+    std::vector<int> test_case_2 = {2, -1, 0, 2};
+    checkTestCase(Solution().getResult(test_case_2), true, "Sample test case 2");
 
 
-    std::vector<int> test_case_2 = {1, 2, 3};
-    checkTestCase(Solution().getResult(test_case_2, 0), 0, "K is lower than minimal value");
+    std::vector<int> test_case_3 = {-2, -1, -3, -2};
+    checkTestCase(Solution().getResult(test_case_3), false, "All fences are negative");
+
+    std::vector<int> test_case_4 = {0, 0, 0, 0};
+    checkTestCase(Solution().getResult(test_case_4), false, "All fences are null");
+
+    std::vector<int> test_case_5 = {1, 1, 1, 1};
+    checkTestCase(Solution().getResult(test_case_5), true, "All fences are one");
+
+    std::vector<int> test_case_6 = {1};
+    checkTestCase(Solution().getResult(test_case_6), true, "One fence with value equal size");
+
+    std::vector<int> test_case_7 = {2};
+    checkTestCase(Solution().getResult(test_case_7), false, "One fence with value greater than size");
 
 
-    std::vector<int> test_case_3 = {};
-    checkTestCase(Solution().getResult(test_case_3, 10), 0, "Empty input vector with random K");
+    std::vector<int> test_case_8 = {15, -15, -15, 15, 5};
+    checkTestCase(Solution().getResult(test_case_8), true, "Sum of all items equal zero");
 
 
-    std::vector<int> test_case_4 = {};
-    checkTestCase(Solution().getResult(test_case_4, 0), 0, "Empty input vector with K = 0");
+    std::vector<int> test_case_9 = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2} ;
+    checkTestCase(Solution().getResult(test_case_9), false, "Sum of all items equal target");
 
-
-    std::vector<int> test_case_5 = {10, 5, 9, 1, 3};
-    checkTestCase(Solution().getResult(test_case_5, 6), 5, "Sample not ordered test case");
-
-
-    std::vector<int> test_case_7 = {10, 5, 9, 1, 3};
-    checkTestCase(Solution().getResult(test_case_7, 20), test_case_7.size(), "K is greater than all values");
-
-
-    std::vector<int> test_case_8 = {5, 5, 5, 5, 5};
-    checkTestCase(Solution().getResult(test_case_8, 0), 0, "All values equal k is zero");
-
-
-    std::vector<int> test_case_9 = {5, 5, 5, 5, 5};
-    checkTestCase(Solution().getResult(test_case_9, 9), test_case_9.size(), "All values equal k is greater");
-
-
-    std::vector<int> test_case_10 = {5};
-    checkTestCase(Solution().getResult(test_case_10, 7), 1, "One value in list K is greater");
-
-
-    std::vector<int> test_case_11 = {5};
-    checkTestCase(Solution().getResult(test_case_11, 5), 1, "One value in list K is equal");
-
-
-    std::vector<int> test_case_12 = {5};
-    checkTestCase(Solution().getResult(test_case_12, 4), 0, "One value in list K is lesser");
-
-
-    std::vector<int> test_case_13 = {6, 9, 8, 2};
-    checkTestCase(Solution().getResult(test_case_13, 3), 1, "Sample");
 
     return 0;
 }
