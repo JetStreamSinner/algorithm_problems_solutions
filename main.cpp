@@ -3,7 +3,7 @@
 #include <csignal>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/duplicate_zeros.h"
+#include "leetcode/merge_sorted_array.h"
 
 
 template<typename T, typename U>
@@ -33,17 +33,45 @@ int main(int argc, char * argv[])
 {
     signal(SIGSEGV, segfaultHandler);
 
-    std::vector<int> test_case_1 = {1, 0, 2, 3, 0, 4, 5, 0};
-    std::vector<int> expected_1 = {1, 0, 0, 2, 3, 0, 0, 4};
+    std::vector<int> test_case_1_num_1 = {1, 2, 3, 0, 0, 0};
+    std::vector<int> test_case_1_num_2 = {2, 5, 6};
+    std::vector<int> test_case_1_expected = {1,2,2,3,5,6};
+    const auto test_case_1_m = 3;
+    const auto test_case_1_n = 3;
+    Solution().merge(test_case_1_num_1, test_case_1_m, test_case_1_num_2, test_case_1_n);
+    checkTestCase(test_case_1_num_1, test_case_1_expected, "Sample test case");
 
-    Solution().duplicateZeros(test_case_1);
-    checkTestCase(test_case_1, expected_1, "Case 1");
+    std::vector<int> test_case_2_num_1 = {1};
+    std::vector<int> test_case_2_num_2 = {};
+    std::vector<int> test_case_2_expected = {1};
+    const auto test_case_2_m = 1;
+    const auto test_case_2_n = 0;
+    Solution().merge(test_case_2_num_1, test_case_2_m, test_case_2_num_2, test_case_2_n);
+    checkTestCase(test_case_2_num_1, test_case_2_expected, "Second array are empty");
 
-    std::vector<int> test_case_2 = {1, 2, 3};
-    std::vector<int> expected_2 = {1, 2, 3};
+    std::vector<int> test_case_3_num_1 = {0};
+    std::vector<int> test_case_3_num_2 = {1};
+    std::vector<int> test_case_3_expected = {1};
+    const auto test_case_3_m = 0;
+    const auto test_case_3_n = 1;
+    Solution().merge(test_case_3_num_1, test_case_3_m, test_case_3_num_2, test_case_3_n);
+    checkTestCase(test_case_3_num_1, test_case_3_num_2, "First array are empty");
 
-    Solution().duplicateZeros(test_case_2);
-    checkTestCase(test_case_2, expected_2, "Case 2");
+    std::vector<int> test_case_4_num_1 = {4, 5, 6, 0, 0, 0};
+    std::vector<int> test_case_4_num_2 = {1, 2, 3};
+    std::vector<int> test_case_4_expected = {1, 2, 3, 4, 5, 6};
+    const auto test_case_4_m = 3;
+    const auto test_case_4_n = 3;
+    Solution().merge(test_case_4_num_1, test_case_4_m, test_case_4_num_2, test_case_4_n);
+    checkTestCase(test_case_4_num_1, test_case_4_expected, "First array greater than second");
+
+    std::vector<int> test_case_5_num_1 = {1, 0};
+    std::vector<int> test_case_5_num_2 = {2};
+    std::vector<int> test_case_5_expected = {1, 2};
+    const auto test_case_5_m = 1;
+    const auto test_case_5_n = 1;
+    Solution().merge(test_case_5_num_1, test_case_5_m, test_case_5_num_2, test_case_5_n);
+    checkTestCase(test_case_5_num_1, test_case_5_expected, "First array greater than second");
 
     return 0;
 }
