@@ -13,6 +13,7 @@ mod tests {
 
     #[test]
     fn rot13_test() {
+        assert_eq!(solutions::rot13("z"), "m");
         assert_eq!(solutions::rot13("test"), "grfg");
         assert_eq!(solutions::rot13("Test"), "Grfg");
     }
