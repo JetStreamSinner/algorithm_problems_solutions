@@ -1,5 +1,3 @@
 mod codewars;
 
-fn main() {
-
-}
+fn main() {}

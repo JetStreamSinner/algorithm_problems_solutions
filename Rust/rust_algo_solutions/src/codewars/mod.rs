@@ -1,21 +1,12 @@
-mod implementations;
+mod roman_encoder;
+mod rot13;
 
 pub mod solutions {
     #[allow(dead_code)]
     pub fn rot13(message: &str) -> String {
-        super::implementations::rot13_impl(message)
+        super::rot13::rot13_impl(message)
+    }
+    pub fn num_as_roman(num: i32) -> String {
+        super::roman_encoder::num_as_roman_impl(num)
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn rot13_test() {
-        assert_eq!(solutions::rot13("z"), "m");
-        assert_eq!(solutions::rot13("test"), "grfg");
-        assert_eq!(solutions::rot13("Test"), "Grfg");
-    }
-}
-

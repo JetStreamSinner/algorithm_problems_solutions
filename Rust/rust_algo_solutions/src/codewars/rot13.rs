@@ -9,25 +9,34 @@
 
 struct LettersBound {
     lower: u32,
-    upper: u32
+    upper: u32,
 }
 
 const UPPER_MIN: u32 = 65;
 const UPPER_MAX: u32 = 90;
-const UPPER_BOUND: LettersBound = LettersBound { lower: UPPER_MIN, upper: UPPER_MAX };
+const UPPER_BOUND: LettersBound = LettersBound {
+    lower: UPPER_MIN,
+    upper: UPPER_MAX,
+};
 
 const LOWER_MIN: u32 = 97;
 const LOWER_MAX: u32 = 122;
-const LOWER_BOUND: LettersBound = LettersBound { lower: LOWER_MIN, upper: LOWER_MAX };
+const LOWER_BOUND: LettersBound = LettersBound {
+    lower: LOWER_MIN,
+    upper: LOWER_MAX,
+};
 
 const OTHER_MIN: u32 = 0;
 const OTHER_MAX: u32 = 0;
-const OTHER_BOUND: LettersBound = LettersBound { lower: OTHER_MIN, upper: OTHER_MAX };
+const OTHER_BOUND: LettersBound = LettersBound {
+    lower: OTHER_MIN,
+    upper: OTHER_MAX,
+};
 
 enum LetterType {
     Upper,
     Lower,
-    Other
+    Other,
 }
 
 impl LetterType {
@@ -35,7 +44,7 @@ impl LetterType {
         match *self {
             LetterType::Upper => UPPER_BOUND,
             LetterType::Lower => LOWER_BOUND,
-            LetterType::Other => OTHER_BOUND
+            LetterType::Other => OTHER_BOUND,
         }
     }
 }
@@ -60,7 +69,6 @@ pub fn rot13_impl(message: &str) -> String {
     const SHIFT_OFFSET: u32 = 13;
 
     for character in message.bytes() {
-
         let target_case = if character.is_ascii_alphabetic() {
             if character.is_ascii_lowercase() {
                 LetterType::Lower
@@ -72,10 +80,24 @@ pub fn rot13_impl(message: &str) -> String {
         };
 
         let shifted = match target_case {
-            LetterType::Upper | LetterType::Lower => shift_char(character as u32, SHIFT_OFFSET, target_case),
-            LetterType::Other => character as u32
+            LetterType::Upper | LetterType::Lower => {
+                shift_char(character as u32, SHIFT_OFFSET, target_case)
+            }
+            LetterType::Other => character as u32,
         };
         transformed.push(shifted as u8 as char);
     }
     transformed
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn rot13_test() {
+        assert_eq!(rot13_impl("z"), "m");
+        assert_eq!(rot13_impl("test"), "grfg");
+        assert_eq!(rot13_impl("Test"), "Grfg");
+    }
 }
