@@ -3,7 +3,8 @@
 #include <csignal>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/subsets_2.h"
+#include "leetcode/remove_element.h"
+#include <cassert>
 
 
 template<typename T, typename U>
@@ -30,44 +31,20 @@ void segfaultHandler(int signum) {
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
 
-    const std::vector<int> test_input_1 = {1, 2, 2};
-    const std::vector<std::vector<int>> expected_output_1 = {{},
-                                                             {1},
-                                                             {1, 2},
-                                                             {1, 2, 2},
-                                                             {2},
-                                                             {2, 2}};
-    checkTestCase(Solution().subsetsWithDup(test_input_1), expected_output_1, "General case");
+    std::vector<int> input_vector_1 = { 3, 2, 2, 3 };
+    std::vector<int> expected_vector_1 = { 2, 2 };
+    const int remove_val_1 = 3;
+    const int expected_val_1 = 2;
+    checkTestCase(Solution().removeElement(input_vector_1, remove_val_1), expected_val_1, "General test case 1");
+    assert(input_vector_1 == expected_vector_1);
 
-    const std::vector<int> test_input_2 = {0};
-    const std::vector<std::vector<int>> expected_output_2 = {{},
-                                                             {0}};
-    checkTestCase(Solution().subsetsWithDup(test_input_2), expected_output_2, "One value case");
+    std::vector<int> input_vector_2 = { 0, 1, 2, 2, 3, 0, 4, 2 };
+    std::vector<int> expected_vector_2 = { 0, 1, 4, 0, 3 };
+    const int remove_val_2 = 2;
+    const int expected_val_2 = 5;
+    checkTestCase(Solution().removeElement(input_vector_2, remove_val_2), expected_val_2, "General test case 2");
+    assert(input_vector_2 == expected_vector_2);
 
-    const std::vector<int> test_input_3 = {};
-    const std::vector<std::vector<int>> expected_output_3 = {{}};
-    checkTestCase(Solution().subsetsWithDup(test_input_3), expected_output_3, "Emtpy input case");
-
-    const std::vector<int> test_input_4 = {2, 1, 2};
-    const std::vector<std::vector<int>> expected_output_4 = {{},
-                                                             {1},
-                                                             {1, 2},
-                                                             {1, 2, 2},
-                                                             {2},
-                                                             {2, 2}};
-    checkTestCase(Solution().subsetsWithDup(test_input_4), expected_output_4, "General case with diff order");
-
-    const std::vector<int> test_input_5 = {1, 2, 3};
-    const std::vector<std::vector<int>> expected_output_5 = {{},
-                                                             {1},
-                                                             {1, 2},
-                                                             {1, 2, 3},
-                                                             {1, 3},
-                                                             {2},
-                                                             {2, 3},
-                                                             {3}};
-
-    checkTestCase(Solution().subsetsWithDup(test_input_5), expected_output_5, "General case");
 
     return 0;
 }
