@@ -3,7 +3,6 @@
 #include <csignal>
 #include <thread>
 #include "utils/pretty_print.h"
-//#include "leetcode/combination_sum_2.h"
 #include "leetcode/n_queens_2.h"
 #include <cassert>
 
@@ -19,7 +18,7 @@ void checkTestCase(const T &received, const U &expected, const std::string &desc
         std::cerr << "Success] ";
     else
         std::cerr << "Failed] ";
-    std::cerr << "[Expected |" << expected << "| Received |" << received << "| ]";
+    std::cerr << "[ Expected |" << expected << "| Received |" << received << "| ]";
     std::cerr << "[Description: " << description << "]" << std::endl;
 }
 
@@ -35,13 +34,16 @@ int main(int argc, char *argv[]) {
     checkTestCase(Solution().totalQueens(4), 2, "General case");
     checkTestCase(Solution().totalQueens(1), 1, "One dim field case");
 
-    std::vector<int> input_vector_2 = { 0, 1, 2, 2, 3, 0, 4, 2 };
-    std::vector<int> expected_vector_2 = { 0, 1, 4, 0, 3 };
-    const int remove_val_2 = 2;
-    const int expected_val_2 = 5;
-    checkTestCase(Solution().removeElement(input_vector_2, remove_val_2), expected_val_2, "General test case 2");
-    assert(input_vector_2 == expected_vector_2);
-
+// target_sum_2_tests
+//    std::vector<int> candidates_1 = { 10, 1, 2, 7, 6, 1, 5 };
+//    int target_1 = 8;
+//    std::vector<std::vector<int>> output_1 = { {1, 1, 6}, {1, 2, 5}, {1, 7}, {2, 6} };
+//    checkTestCase(Solution().combinationSum2(candidates_1, target_1), output_1, "General test case 1");
+//
+//    std::vector<int> candidates_2 = { 2, 5, 2, 1, 2 };
+//    int target_2 = 5;
+//    std::vector<std::vector<int>> output_2 = { {1, 2, 2}, {5} };
+//    checkTestCase(Solution().combinationSum2(candidates_2, target_2), output_2, "General test case 2");
 
     return 0;
 }
