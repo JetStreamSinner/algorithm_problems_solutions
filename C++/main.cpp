@@ -3,7 +3,7 @@
 #include <csignal>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/n_queens_2.h"
+#include "leetcode/n_queens_1.h"
 #include <cassert>
 
 
@@ -31,8 +31,12 @@ void segfaultHandler(int signum) {
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
 
-    checkTestCase(Solution().totalQueens(4), 2, "General case");
-    checkTestCase(Solution().totalQueens(1), 1, "One dim field case");
+    const std::vector<std::vector<std::string>> expected_1 = {{".Q..","...Q","Q...","..Q."},
+                                                              {"..Q.","Q...","...Q",".Q.."}};
+    checkTestCase(Solution().solveNQueens(4), expected_1, "General case");
+
+    const std::vector<std::vector<std::string>> expected_2 = {{"Q"}};
+    checkTestCase(Solution().solveNQueens(1), expected_2, "One dim field case");
 
 // target_sum_2_tests
 //    std::vector<int> candidates_1 = { 10, 1, 2, 7, 6, 1, 5 };
