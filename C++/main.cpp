@@ -3,7 +3,8 @@
 #include <csignal>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/remove_element.h"
+//#include "leetcode/combination_sum_2.h"
+#include "leetcode/n_queens_2.h"
 #include <cassert>
 
 
@@ -31,12 +32,8 @@ void segfaultHandler(int signum) {
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
 
-    std::vector<int> input_vector_1 = { 3, 2, 2, 3 };
-    std::vector<int> expected_vector_1 = { 2, 2 };
-    const int remove_val_1 = 3;
-    const int expected_val_1 = 2;
-    checkTestCase(Solution().removeElement(input_vector_1, remove_val_1), expected_val_1, "General test case 1");
-    assert(input_vector_1 == expected_vector_1);
+    checkTestCase(Solution().totalQueens(4), 2, "General case");
+    checkTestCase(Solution().totalQueens(1), 1, "One dim field case");
 
     std::vector<int> input_vector_2 = { 0, 1, 2, 2, 3, 0, 4, 2 };
     std::vector<int> expected_vector_2 = { 0, 1, 4, 0, 3 };
