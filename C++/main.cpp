@@ -3,7 +3,7 @@
 #include <csignal>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/n_queens_1.h"
+#include "leetcode/remove_duplicates_from_sorted_array.h"
 #include <cassert>
 
 
@@ -31,23 +31,17 @@ void segfaultHandler(int signum) {
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
 
-    const std::vector<std::vector<std::string>> expected_1 = {{".Q..","...Q","Q...","..Q."},
-                                                              {"..Q.","Q...","...Q",".Q.."}};
-    checkTestCase(Solution().solveNQueens(4), expected_1, "General case");
+    std::vector<int> nums_1 = {1, 1, 2};
+    std::vector<int> output_nums_1 = {1, 2};
+    int output_count_1 = 2;
+    checkTestCase(Solution().removeDuplicates(nums_1), output_count_1, "Case 1");
+    checkTestCase(nums_1, output_nums_1, "Case 1");
 
-    const std::vector<std::vector<std::string>> expected_2 = {{"Q"}};
-    checkTestCase(Solution().solveNQueens(1), expected_2, "One dim field case");
-
-// target_sum_2_tests
-//    std::vector<int> candidates_1 = { 10, 1, 2, 7, 6, 1, 5 };
-//    int target_1 = 8;
-//    std::vector<std::vector<int>> output_1 = { {1, 1, 6}, {1, 2, 5}, {1, 7}, {2, 6} };
-//    checkTestCase(Solution().combinationSum2(candidates_1, target_1), output_1, "General test case 1");
-//
-//    std::vector<int> candidates_2 = { 2, 5, 2, 1, 2 };
-//    int target_2 = 5;
-//    std::vector<std::vector<int>> output_2 = { {1, 2, 2}, {5} };
-//    checkTestCase(Solution().combinationSum2(candidates_2, target_2), output_2, "General test case 2");
+    std::vector<int> nums_2 = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+    std::vector<int> output_nums_2 = {0, 1, 2, 3, 4};
+    int output_count_2 = 5;
+    checkTestCase(Solution().removeDuplicates(nums_2), output_count_2, "Case 2");
+    checkTestCase(nums_2, output_nums_2, "Case 1");
 
     return 0;
 }
