@@ -41,7 +41,26 @@ int main(int argc, char *argv[]) {
     std::vector<int> output_nums_2 = {0, 1, 2, 3, 4};
     int output_count_2 = 5;
     checkTestCase(Solution().removeDuplicates(nums_2), output_count_2, "Case 2");
-    checkTestCase(nums_2, output_nums_2, "Case 1");
+    checkTestCase(nums_2, output_nums_2, "Case 2");
+
+    std::vector<int> nums_3 = {1, 2};
+    std::vector<int> output_nums_3 = {1, 2};
+    int output_count_3 = 2;
+    checkTestCase(Solution().removeDuplicates(nums_3), output_count_3, "Case 3");
+    checkTestCase(nums_3, output_nums_3, "Case 3");
+
+
+    std::vector<int> nums_4 = {1, 2, 3, 4, 5};
+    std::vector<int> output_nums_4 = {1, 2, 3, 4, 5};
+    int output_count_4 = 5;
+    checkTestCase(Solution().removeDuplicates(nums_4), output_count_4, "Case 4");
+    checkTestCase(nums_4, output_nums_4, "Case 4");
+
+    std::vector<int> nums_5 = {1, 1};
+    std::vector<int> output_nums_5 = {1, 1};
+    int output_count_5 = 1;
+    checkTestCase(Solution().removeDuplicates(nums_5), output_count_5, "Case 5");
+    checkTestCase(nums_5, output_nums_5, "Case 5");
 
     return 0;
 }

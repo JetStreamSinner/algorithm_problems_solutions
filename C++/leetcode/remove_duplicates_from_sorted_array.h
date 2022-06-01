@@ -11,9 +11,32 @@
 
 class Solution {
 public:
-    int removeDuplicates(std::vector<int>& nums) {
+
+    int customSolution(std::vector<int>& nums) {
+        const auto end_iter = nums.end();
+        const auto last_value = nums.back();
+        auto forwarder = nums.begin();
+        auto sorted = forwarder;
+
+        while (*sorted != last_value) {
+            forwarder = std::find_if(forwarder, end_iter, [&](auto value) {
+                return value != *sorted;
+            });
+            sorted = std::next(sorted);
+            *sorted = *forwarder;
+        }
+
+        const auto unique_range = std::distance(nums.begin(), sorted) + 1;
+        return unique_range;
+    }
+
+    int stlWaySolution(std::vector<int>& nums) {
         auto duplicatesFrom = std::unique(nums.begin(), nums.end());
         const auto result = std::distance(nums.begin(), duplicatesFrom);
         return result;
+    }
+
+    int removeDuplicates(std::vector<int>& nums) {
+        return customSolution(nums);
     }
 };
