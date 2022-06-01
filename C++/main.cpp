@@ -3,7 +3,7 @@
 #include <csignal>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/check_if_n_and_its_double_exist.h"
+#include "leetcode/valid_mountain_array.h"
 #include <cassert>
 
 
@@ -31,12 +31,11 @@ void segfaultHandler(int signum) {
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
 
-    std::vector<int> source_1 = {10, 2, 5, 3};
-    checkTestCase(Solution().checkIfExist(source_1), true, "Case 1");
-    std::vector<int> source_2 = {7, 1, 14, 11};
-    checkTestCase(Solution().checkIfExist(source_2), true, "Case 2");
-    std::vector<int> source_3 = {3, 1, 7, 11};
-    checkTestCase(Solution().checkIfExist(source_3), false, "Case 3");
-
+    std::vector<int> arr_1 = {2, 1};
+    checkTestCase(Solution().validMountain(arr_1), false, "Case 1");
+    std::vector<int> arr_2 = {3, 5, 5};
+    checkTestCase(Solution().validMountain(arr_2), false, "Case 2");
+    std::vector<int> arr_3 = {0, 3, 2, 1};
+    checkTestCase(Solution().validMountain(arr_3), true, "Case 3");
     return 0;
 }
