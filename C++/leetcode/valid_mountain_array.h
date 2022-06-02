@@ -21,5 +21,6 @@ public:
         while (std::next(forwarder) != end_iterator && *forwarder > *std::next(forwarder)) {
             forwarder = std::next(forwarder);
         }
-        return forwarder == std::prev(end_iterator) && forwarder != fall_start;    }
+        return forwarder == std::prev(end_iterator) && forwarder != fall_start;
+    }
 };
