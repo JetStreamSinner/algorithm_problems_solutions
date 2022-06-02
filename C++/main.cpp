@@ -3,7 +3,7 @@
 #include <csignal>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/move_zeroes.h"
+#include "leetcode/sort_array_by_parity.h"
 
 
 template<typename T, typename U>
@@ -30,15 +30,13 @@ void segfaultHandler(int signum) {
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
 
-    std::vector<int> nums_1 = {0, 1, 0, 3, 12};
-    std::vector<int> expected_1 = {1, 3, 12, 0, 0};
-    Solution().moveZeroes(nums_1);
-    checkTestCase(nums_1, expected_1, "Case 1");
+    std::vector<int> nums_1 = {3, 1, 2, 4};
+    std::vector<int> expected_1 = {2, 4, 3 ,1};
+    checkTestCase(Solution().sortArrayByParity(nums_1), expected_1, "Case 1");
 
-    std::vector<int> nums_2 = {0};
-    std::vector<int> expected_2 = {0};
-    Solution().moveZeroes(nums_2);
-    checkTestCase(nums_2, expected_2, "Case 2");
+    std::vector<int> nums_2 = {3, 1, 2, 4};
+    std::vector<int> expected_2 = {2, 4, 3 ,1};
+    checkTestCase(Solution().sortArrayByParity(nums_2), expected_2, "Case 2");
 
     return 0;
 }
