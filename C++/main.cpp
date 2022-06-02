@@ -3,8 +3,7 @@
 #include <csignal>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/valid_mountain_array.h"
-#include <cassert>
+#include "leetcode/replace_elements_with_greatest_element_on_right_side.h"
 
 
 template<typename T, typename U>
@@ -31,11 +30,13 @@ void segfaultHandler(int signum) {
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
 
-    std::vector<int> arr_1 = {2, 1};
-    checkTestCase(Solution().validMountain(arr_1), false, "Case 1");
-    std::vector<int> arr_2 = {3, 5, 5};
-    checkTestCase(Solution().validMountain(arr_2), false, "Case 2");
-    std::vector<int> arr_3 = {0, 3, 2, 1};
-    checkTestCase(Solution().validMountain(arr_3), true, "Case 3");
+    std::vector<int> input_1 = {17, 18, 5, 4, 6, 1};
+    std::vector<int> output_1 = {18, 6, 6, 6, 1, -1};
+    checkTestCase(Solution().replaceElements(input_1), output_1, "Case 1");
+
+    std::vector<int> input_2 = {400};
+    std::vector<int> output_2 {-1};
+    checkTestCase(Solution().replaceElements(input_2), output_2, "Case 2");
+
     return 0;
 }
