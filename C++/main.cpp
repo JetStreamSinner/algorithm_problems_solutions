@@ -3,7 +3,7 @@
 #include <csignal>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/third_maximum_number.h"
+#include "leetcode/find_all_numbers_disappeared_in_array.h"
 
 
 template<typename T, typename U>
@@ -30,17 +30,13 @@ void segfaultHandler(int signum) {
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
 
-    std::vector<int> nums_1 = {3, 2, 1};
-    int expected_1 = 1;
-    checkTestCase(Solution().thirdMax(nums_1), expected_1, "Case 1");
+    std::vector<int> input_1 = {4, 3, 2, 7, 8, 2, 3, 1};
+    std::vector<int> output_1 = {5, 6};
+    checkTestCase(Solution().findDisappearedNumbers(input_1), output_1, "Case 1");
 
-    std::vector<int> nums_2 = {1, 2};
-    int expected_2 = 2;
-    checkTestCase(Solution().thirdMax(nums_2), expected_2, "Case 2");
-
-    std::vector<int> nums_3 = {2, 2, 3, 1};
-    int expected_3 = 1;
-    checkTestCase(Solution().thirdMax(nums_3), expected_3, "Case 3");
+    std::vector<int> input_2 = {1, 1};
+    std::vector<int> output_2 = {2};
+    checkTestCase(Solution().findDisappearedNumbers(input_2), output_2, "Case 2");
 
     return 0;
 }
