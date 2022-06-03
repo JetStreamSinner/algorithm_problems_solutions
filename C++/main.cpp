@@ -3,7 +3,7 @@
 #include <csignal>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/height_checker.h"
+#include "leetcode/third_maximum_number.h"
 
 
 template<typename T, typename U>
@@ -30,13 +30,17 @@ void segfaultHandler(int signum) {
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
 
-    std::vector<int> heights_1 = {1, 1, 4, 2, 1, 3};
-    int expected_1 = 3;
-    checkTestCase(Solution().heightChecker(heights_1), expected_1, "Case 1");
+    std::vector<int> nums_1 = {3, 2, 1};
+    int expected_1 = 1;
+    checkTestCase(Solution().thirdMax(nums_1), expected_1, "Case 1");
 
-    std::vector<int> heights_2 = {5, 1, 2, 3, 4};
-    int expected_2 = 5;
-    checkTestCase(Solution().heightChecker(heights_2), expected_2, "Case 2");
+    std::vector<int> nums_2 = {1, 2};
+    int expected_2 = 2;
+    checkTestCase(Solution().thirdMax(nums_2), expected_2, "Case 2");
+
+    std::vector<int> nums_3 = {2, 2, 3, 1};
+    int expected_3 = 1;
+    checkTestCase(Solution().thirdMax(nums_3), expected_3, "Case 3");
 
     return 0;
 }
