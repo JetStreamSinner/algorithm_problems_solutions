@@ -28,14 +28,5 @@ void segfaultHandler(int signum) {
 
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
-
-    std::vector<int> input_1 = {-4, -1, 0, 3, 10};
-    std::vector<int> output_1 = {0, 1, 9, 16, 100};
-    checkTestCase(Solution().sortedSquares(input_1), output_1, "Case 1");
-
-    std::vector<int> input_2 = {-7, -3, 2, 3, 11};
-    std::vector<int> output_2 = {4, 9, 9, 49, 121};
-    checkTestCase(Solution().sortedSquares(input_2), output_2, "Case 2");
-
     return 0;
 }
