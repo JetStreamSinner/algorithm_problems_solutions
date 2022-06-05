@@ -37,11 +37,11 @@ public:
         result.push_back(value);
 
         if (node->left) {
-            traverseTree(node->left, result);
+            traverse(node->left, result);
         }
 
         if (node->right) {
-            traverseTree(node->right, result);
+            traverse(node->right, result);
         }
     }
 };
@@ -51,14 +51,14 @@ class InorderStrategy {
 public:
     void traverse(TreeNode<T> * node, std::vector<T>& result) {
         if (node->left) {
-            traverseTree(node->left, result);
+            traverse(node->left, result);
         }
 
         const int value = node->val;
         result.push_back(value);
 
         if (node->right) {
-            traverseTree(node->right, result);
+            traverse(node->right, result);
         }
     }
 };
@@ -68,11 +68,11 @@ class PostorderStrategy {
 public:
     void traverse(TreeNode<T> * node, std::vector<T>& result) {
         if (node->left) {
-            traverseTree(node->left, result);
+            traverse(node->left, result);
         }
 
         if (node->right) {
-            traverseTree(node->right, result);
+            traverse(node->right, result);
         }
         const int value = node->val;
         result.push_back(value);
