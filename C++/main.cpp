@@ -27,72 +27,7 @@ void segfaultHandler(int signum) {
     exit(signum);
 }
 
-TreeNode* generate_first_tree() {
-    TreeNode * a = new TreeNode(1);
-
-    TreeNode * b = new TreeNode(2);
-    TreeNode * c = new TreeNode(3);
-    TreeNode * d = new TreeNode(4);
-
-    b->left = c;
-    b->right = d;
-
-    TreeNode * e = new TreeNode(2);
-    TreeNode * f = new TreeNode(3);
-    TreeNode * g = new TreeNode(4);
-    e->left = g;
-    e->right = f;
-
-    a->left = b;
-    a->right = e;
-
-    return a;
-}
-
-TreeNode* generate_second_tree() {
-    TreeNode * a = new TreeNode(1);
-
-    TreeNode * b = new TreeNode(2);
-    TreeNode * c = new TreeNode(3);
-    b->right = c;
-
-    TreeNode * e = new TreeNode(2);
-    TreeNode * f = new TreeNode(3);
-    e->right = f;
-
-    a->left = b;
-    a->right = e;
-
-    return a;
-}
-
-void free_tree(TreeNode* node) {
-    if (!node) {
-        return;
-    }
-
-    if (node->left) {
-        free_tree(node->left);
-    }
-
-    if (node->right) {
-        free_tree(node->right);
-    }
-
-    delete node;
-}
 
 int main(int argc, char *argv[]) {
-    signal(SIGSEGV, segfaultHandler);
-
-    auto first_tree = generate_first_tree();
-    checkTestCase(Solution().isSymmetric(first_tree), true, "Case 1");
-
-    auto second_tree = generate_second_tree();
-    checkTestCase(Solution().isSymmetric(second_tree), false, "Case 2");
-
-    free_tree(first_tree);
-    free_tree(second_tree);
-
     return 0;
 }
