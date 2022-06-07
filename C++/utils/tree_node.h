@@ -24,4 +24,3 @@ void free_tree(TreeNode* node) {
 
     delete node;
 }
-}
