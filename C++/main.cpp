@@ -1,8 +1,6 @@
 #include <iostream>
 #include <string>
-#include <csignal>
 #include <thread>
-#include "leetcode/symmetric_tree.h"
 #include "utils/pretty_print.h"
 
 
