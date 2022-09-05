@@ -2,6 +2,7 @@
 #include <string>
 #include <thread>
 #include "utils/pretty_print.h"
+#include "leetcode/longest_common_prefix.h"
 
 
 template<typename T, typename U>
@@ -27,5 +28,12 @@ void segfaultHandler(int signum) {
 
 
 int main(int argc, char *argv[]) {
+    const std::vector<std::string> test_input_1 = { "flower", "flow", "flight" };
+    const std::string test_expect_1 = "fl";
+    checkTestCase(Solution().longestCommonPrefix(test_input_1), test_expect_1, "Test 1");
+
+    const std::vector<std::string> test_input_2 = { "dog", "racecar", "car" };
+    const std::string test_expect_2 = "";
+    checkTestCase(Solution().longestCommonPrefix(test_input_2), test_expect_2, "Test 2");
     return 0;
 }
