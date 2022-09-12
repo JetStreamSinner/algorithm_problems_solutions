@@ -2,7 +2,7 @@
 #include <string>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/integer_to_roman.h"
+#include "leetcode/search_insert_position.h"
 
 
 template<typename T, typename U>
@@ -28,24 +28,19 @@ void segfaultHandler(int signum) {
 
 
 int main(int argc, char *argv[]) {
-    const auto test_input_1 = 3;
-    const auto expected_1 = "III";
-    checkTestCase(Solution().intToRoman(test_input_1), expected_1, "Three");
+    std::vector<int> arr_1 = {1, 3, 5, 6};
+    int target_1 = 5;
+    int expected_1 = 2;
+    checkTestCase(Solution().searchInsert(arr_1, target_1), expected_1, "Test 1");
 
-    const auto test_input_2 = 58;
-    const auto expected_2 = "LVIII";
-    checkTestCase(Solution().intToRoman(test_input_2), expected_2, "Fifteen eight");
+    std::vector<int> arr_2 = {1, 3, 5, 6};
+    int target_2 = 2;
+    int expected_2 = 1;
+    checkTestCase(Solution().searchInsert(arr_2, target_2), expected_2, "Test 2");
 
-    const auto test_input_3 = 1994;
-    const auto expected_3 = "MCMXCIV";
-    checkTestCase(Solution().intToRoman(test_input_3), expected_3, "Ninth nineteen four");
-
-    const auto test_input_4 = 1;
-    const auto expected_4 = "I";
-    checkTestCase(Solution().intToRoman(test_input_4), expected_4, "One");
-
-    const auto test_input_5 = 2;
-    const auto expected_5 = "II";
-    checkTestCase(Solution().intToRoman(test_input_5), expected_5, "Two");
+    std::vector<int> arr_3 = {1, 3, 5, 6};
+    int target_3 = 7;
+    int expected_3 = 4;
+    checkTestCase(Solution().searchInsert(arr_3, target_3), expected_3, "Test 3");
     return 0;
 }
