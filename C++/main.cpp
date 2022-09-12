@@ -2,11 +2,11 @@
 #include <string>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/length_of_last_word.h"
+#include "leetcode/plus_one.h"
 
 
 template<typename T, typename U>
-void checkTestCase(const T &received, const U &expected, const std::string &description="") {
+void checkTestCase(const T &received, const U &expected, const std::string &description = "") {
     if constexpr (std::is_same_v<bool, T>) {
         std::cerr << std::boolalpha;
     }
@@ -28,16 +28,16 @@ void segfaultHandler(int signum) {
 
 
 int main(int argc, char *argv[]) {
-    std::string input_1 = "Hello World";
-    int expected_1 = 5;
-    checkTestCase(Solution().lengthOfLastWord(input_1), expected_1, "Test 1");
+    std::vector<int> input_1 = {1, 2, 3};
+    std::vector<int> expected_1 = {1, 2, 4};
+    checkTestCase(Solution().plusOne(input_1), expected_1, "Test 1");
 
-    std::string input_2 = "   fly me   to   the moon  ";
-    int expected_2 = 4;
-    checkTestCase(Solution().lengthOfLastWord(input_2), expected_2, "Test 2");
+    std::vector<int> input_2 = {4, 3, 2, 1};
+    std::vector<int> expected_2 = {4, 3, 2, 2};
+    checkTestCase(Solution().plusOne(input_2), expected_2, "Test 2");
 
-    std::string input_3 = "luffy is still joyboy";
-    int expected_3 = 6;
-    checkTestCase(Solution().lengthOfLastWord(input_3), expected_3, "Test 3");
+    std::vector<int> input_3 = {9};
+    std::vector<int> expected_3 = {1, 0};
+    checkTestCase(Solution().plusOne(input_3), expected_3, "Test 3");
     return 0;
 }
