@@ -2,7 +2,7 @@
 #include <string>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/search_insert_position.h"
+#include "leetcode/length_of_last_word.h"
 
 
 template<typename T, typename U>
@@ -28,19 +28,16 @@ void segfaultHandler(int signum) {
 
 
 int main(int argc, char *argv[]) {
-    std::vector<int> arr_1 = {1, 3, 5, 6};
-    int target_1 = 5;
-    int expected_1 = 2;
-    checkTestCase(Solution().searchInsert(arr_1, target_1), expected_1, "Test 1");
+    std::string input_1 = "Hello World";
+    int expected_1 = 5;
+    checkTestCase(Solution().lengthOfLastWord(input_1), expected_1, "Test 1");
 
-    std::vector<int> arr_2 = {1, 3, 5, 6};
-    int target_2 = 2;
-    int expected_2 = 1;
-    checkTestCase(Solution().searchInsert(arr_2, target_2), expected_2, "Test 2");
+    std::string input_2 = "   fly me   to   the moon  ";
+    int expected_2 = 4;
+    checkTestCase(Solution().lengthOfLastWord(input_2), expected_2, "Test 2");
 
-    std::vector<int> arr_3 = {1, 3, 5, 6};
-    int target_3 = 7;
-    int expected_3 = 4;
-    checkTestCase(Solution().searchInsert(arr_3, target_3), expected_3, "Test 3");
+    std::string input_3 = "luffy is still joyboy";
+    int expected_3 = 6;
+    checkTestCase(Solution().lengthOfLastWord(input_3), expected_3, "Test 3");
     return 0;
 }
