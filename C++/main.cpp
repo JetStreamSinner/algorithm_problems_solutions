@@ -2,7 +2,7 @@
 #include <string>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/plus_one.h"
+#include "leetcode/sqrt_x.h"
 
 
 template<typename T, typename U>
@@ -28,16 +28,13 @@ void segfaultHandler(int signum) {
 
 
 int main(int argc, char *argv[]) {
-    std::vector<int> input_1 = {1, 2, 3};
-    std::vector<int> expected_1 = {1, 2, 4};
-    checkTestCase(Solution().plusOne(input_1), expected_1, "Test 1");
+    int input_1 = 4;
+    int expect_1 = 2;
+    checkTestCase(Solution().mySqrt(input_1), expect_1, "Test 1");
 
-    std::vector<int> input_2 = {4, 3, 2, 1};
-    std::vector<int> expected_2 = {4, 3, 2, 2};
-    checkTestCase(Solution().plusOne(input_2), expected_2, "Test 2");
+    int input_2 = 8;
+    int expect_2 = 2;
+    checkTestCase(Solution().mySqrt(input_2), expect_2, "Test 2");
 
-    std::vector<int> input_3 = {9};
-    std::vector<int> expected_3 = {1, 0};
-    checkTestCase(Solution().plusOne(input_3), expected_3, "Test 3");
     return 0;
 }
