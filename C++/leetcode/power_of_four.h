@@ -6,10 +6,10 @@
 class Solution {
 public:
     bool isPowerOfFour(int n) {
-        long long target = 1;
-        while (target < n) {
-            target = target * 4;
-        }
-        return target == n;
+        const long long mask = 0b0101'0101'0101'0101'0101'0101'0101'0101;
+        const bool have_even_bit = (n | mask) == mask;
+        const bool have_one_even_bit = (n & n - 1) == 0;
+        const bool positive = n > 0;
+        return positive && have_even_bit && have_one_even_bit;
     }
 };
