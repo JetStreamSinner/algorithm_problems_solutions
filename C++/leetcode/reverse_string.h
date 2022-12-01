@@ -4,7 +4,23 @@
 
 class Solution {
 public:
-    void reverseString(std::vector<char>& s) {
+
+    void manualApproach(std::vector<char>& s) {
+        auto forwarder = s.begin();
+        auto backwarder = std::prev(s.end());
+
+        while (forwarder < backwarder) {
+            std::swap(*forwarder, *backwarder);
+            forwarder = std::next(forwarder);
+            backwarder = std::prev(backwarder);
+        }
+    }
+
+    void stlApproach(std::vector<char>& s) {
         std::reverse(s.begin(), s.end());
+    }
+
+    void reverseString(std::vector<char>& s) {
+        stlApproach(s);
     }
 };
