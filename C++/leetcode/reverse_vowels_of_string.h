@@ -7,29 +7,22 @@
 
 class Solution {
 public:
-    string reverseVowels(string s) {
-        auto forwarder = s.begin();
-        auto backwarder = std::prev(s.end());
+    string reverseVowels(string s)
+    {
+        const std::string vowels = "aeiouAEIOU";
+        for (std::size_t left = 0, right = s.size() - 1; left < right; ) {
+            left = s.find_first_of(vowels, left);
+            right = s.find_last_of(vowels, right);
 
-        while (forwarder < backwarder) {
-            while (!isVowel(*forwarder) && forwarder < backwarder) {
-                forwarder = std::next(forwarder);
+            if (left >= right) {
+                break;
             }
 
-            while (!isVowel(*backwarder) && forwarder < backwarder) {
-                backwarder = std::prev(backwarder);
-            }
-
-            std::swap(*forwarder, *backwarder);
-
-            forwarder = std::next(forwarder);
-            backwarder = std::prev(backwarder);
+            swap(s.at(left), s.at(right));
+            left++;
+            right--;
         }
         return s;
     }
 
-    bool isVowel(char ch) {
-        const std::unordered_set<char> vowels = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
-        return vowels.find(ch) != vowels.end();
-    }
 };
