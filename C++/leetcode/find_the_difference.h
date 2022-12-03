@@ -16,7 +16,8 @@
 
 class Solution {
 public:
-    char findTheDifference(const string& s, const string& t) {
+
+    char hash_map_approach(const std::string& s, const std::string& t) {
         std::unordered_map<char, int> char_appearance;
 
         for (auto ch : t) {
@@ -34,5 +35,25 @@ public:
             return left.second < right.second;
         })->first;
         return target;
+    }
+
+    char sort_approach(string s, string t) {
+        std::sort(s.begin(), s.end());
+        std::sort(t.begin(), t.end());
+
+        const std::size_t base_size = s.size();
+
+        for (std::size_t index = 0; index < base_size; ++index) {
+            const char source_ch = s.at(index);
+            const char target_ch = t.at(index);
+            if (source_ch != target_ch) {
+                return target_ch;
+            }
+        }
+        return t.back();
+    }
+
+    char findTheDifference(string s, const string t) {
+        return hash_map_approach(s, t);
     }
 };
