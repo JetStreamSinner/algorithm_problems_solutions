@@ -2,7 +2,7 @@
 #include <string>
 #include <thread>
 #include "utils/pretty_print.h"
-#include "leetcode/sqrt_x.h"
+#include "leetcode/binary_watch.h"
 
 
 template<typename T, typename U>
@@ -28,13 +28,12 @@ void segfaultHandler(int signum) {
 
 
 int main(int argc, char *argv[]) {
-    int input_1 = 4;
-    int expect_1 = 2;
-    checkTestCase(Solution().mySqrt(input_1), expect_1, "Test 1");
+    int test_input_1 = 1;
+    std::vector<std::string> output_1 = { "0:01","0:02","0:04","0:08","0:16","0:32","1:00","2:00","4:00","8:00" };
+    checkTestCase(Solution().readBinaryWatch(test_input_1), output_1, "Test case 1");
 
-    int input_2 = 8;
-    int expect_2 = 2;
-    checkTestCase(Solution().mySqrt(input_2), expect_2, "Test 2");
-
+    int test_input_2 = 9;
+    std::vector<std::string> output_2 = {};
+    checkTestCase(Solution().readBinaryWatch(test_input_2), output_2, "Empty test case");
     return 0;
 }
