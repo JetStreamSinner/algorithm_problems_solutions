@@ -1,8 +1,9 @@
 #include <iostream>
 #include <string>
 #include <thread>
+#include <csignal>
 #include "utils/pretty_print.h"
-#include "leetcode/binary_watch.h"
+#include "leetcode/island_perimeter.h"
 
 
 template<typename T, typename U>
@@ -28,12 +29,11 @@ void segfaultHandler(int signum) {
 
 
 int main(int argc, char *argv[]) {
-    int test_input_1 = 1;
-    std::vector<std::string> output_1 = { "0:01","0:02","0:04","0:08","0:16","0:32","1:00","2:00","4:00","8:00" };
-    checkTestCase(Solution().readBinaryWatch(test_input_1), output_1, "Test case 1");
+    signal(SIGSEGV, segfaultHandler);
 
-    int test_input_2 = 9;
-    std::vector<std::string> output_2 = {};
-    checkTestCase(Solution().readBinaryWatch(test_input_2), output_2, "Empty test case");
+    std::vector<std::vector<int32_t>> input_1 = {{0,1,0,0},{1,1,1,0},{0,1,0,0},{1,1,0,0}};
+    checkTestCase(Solution().islandPerimeter(input_1), 16, "Test 1");
+    std::vector<std::vector<int32_t>> input_2 = {{1}};
+    checkTestCase(Solution().islandPerimeter(input_1), 16, "Test 2");
     return 0;
 }
