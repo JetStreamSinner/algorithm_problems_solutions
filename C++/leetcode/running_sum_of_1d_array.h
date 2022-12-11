@@ -20,8 +20,9 @@
 
 class Solution {
 public:
-    std::vector<int> runningSum(std::vector<int32_t>& nums) {
-        std::vector<int> prefix_sums(nums.size(), 0);
+
+    std::vector<int32_t> additional_space_impl(const std::vector<int32_t>& nums) {
+        std::vector<int32_t> prefix_sums(nums.size(), 0);
         std::size_t accumulator = 0;
 
         auto forwarder = nums.begin();
@@ -35,5 +36,24 @@ public:
             forwarder = std::next(forwarder);
         }
         return prefix_sums;
+    }
+
+    std::vector<int32_t> constant_space_impl(std::vector<int32_t>& nums) {
+        auto previous = nums.begin();
+        auto current = std::next(previous);
+        const auto end = nums.end();
+
+
+        while (current < end) {
+            *current += *previous;
+
+            current = std::next(current);
+            previous = std::next(previous);
+        }
+        return nums;
+    }
+
+    std::vector<int> runningSum(std::vector<int32_t>& nums) {
+        return additional_space_impl(nums);
     }
 };
