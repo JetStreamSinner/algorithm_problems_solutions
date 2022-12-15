@@ -18,10 +18,47 @@
  */
 class Solution {
 public:
-    ListNode *detectCycle(ListNode *head) {
-        std::unordered_set<ListNode*> nodes;
 
-        auto * forwarder = head;
+    bool hasCycle(ListNode *&fast_pointer, ListNode *&slow_pointer) {
+        while (fast_pointer && fast_pointer->next) {
+            fast_pointer = fast_pointer->next->next;
+            slow_pointer = slow_pointer->next;
+            if (fast_pointer == slow_pointer) {
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    ListNode *twoPointersImpl(ListNode *head) {
+        if (!head || !head->next) {
+            return nullptr;
+        }
+
+        auto *slow_pointer = head;
+        auto *fast_pointer = head;
+
+        const bool without_cycle = !hasCycle(fast_pointer, slow_pointer);
+
+        if (without_cycle) {
+            return nullptr;
+        }
+
+        fast_pointer = head;
+        while (fast_pointer != slow_pointer) {
+            fast_pointer = fast_pointer->next;
+            slow_pointer = slow_pointer->next;
+        }
+
+
+        return fast_pointer;
+    }
+
+    ListNode *hash_map_impl(ListNode *head) {
+        std::unordered_set < ListNode * > nodes;
+
+        auto *forwarder = head;
         while (forwarder) {
             if (nodes.find(forwarder) != nodes.end()) {
                 return forwarder;
@@ -30,5 +67,9 @@ public:
             forwarder = forwarder->next;
         }
         return nullptr;
+    }
+
+    ListNode *detectCycle(ListNode *head) {
+        return twoPointersImpl(head);
     }
 };
