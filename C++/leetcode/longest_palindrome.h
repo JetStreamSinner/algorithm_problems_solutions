@@ -17,7 +17,7 @@
 
 class Solution {
 public:
-    int longestPalindrome(const string& s) {
+    int hash_map_solution(const std::string& s) {
         std::unordered_map<char, std::size_t> char_appearance;
 
         std::size_t result_length = 0;
@@ -36,5 +36,27 @@ public:
             }
         }
         return result_length;
+    }
+
+    int greedy_solution(const std::string& s) {
+        const std::size_t ascii_table_size = 256;
+        std::array<int32_t, ascii_table_size> letters_count{0};
+
+        for (auto ch : s) {
+            letters_count.at(ch)++;
+        }
+
+        std::size_t result = 0;
+        for (auto ch_count : letters_count) {
+            result += ch_count / 2 * 2;
+            if (result % 2 == 0 && ch_count % 2 == 1) {
+                result++;
+            }
+        }
+        return result;
+    }
+
+    int longestPalindrome(const string& s) {
+        return greedy_solution(s);
     }
 };
