@@ -21,7 +21,7 @@
 class Solution {
 public:
 
-    int32_t findContentChildren(vector<int>& child_greed, vector<int>& cookies_source) {
+    int32_t findContentChildren(std::vector<int32_t>& child_greed, std::vector<int32_t>& cookies_source) {
 
         std::sort(child_greed.begin(), child_greed.end());
         std::sort(cookies_source.begin(), cookies_source.end());
