@@ -1,6 +1,6 @@
 #pragma once
 
-// https://leetcode.com/problems/maximum-subarray/submissions/861153012/
+// https://leetcode.com/problems/maximum-subarray/
 // Given an integer array nums, find the
 // subarray which has the largest sum and return its sum.
 
