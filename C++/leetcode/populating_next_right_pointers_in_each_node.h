@@ -33,7 +33,7 @@ public:
         }
     }
 
-    Node * connect(Node* root) {
+    Node * recursive_solution(Node * root) {
         if (!root) {
             return nullptr;
         }
@@ -41,5 +41,46 @@ public:
         connect_nodes(root->left, root->right);
 
         return root;
+    }
+
+    Node * iterative_solution(Node * root) {
+        if (!root) {
+            return nullptr;
+        }
+
+        std::queue<Node*> tree_level;
+        tree_level.push(root);
+
+        while (!tree_level.empty()) {
+            std::size_t level_size = tree_level.size();
+
+            Node * prev = tree_level.front();
+            tree_level.pop();
+
+            for (std::size_t node_index = 0; node_index < level_size; ++node_index) {
+                Node * current = nullptr;
+                if (!tree_level.empty() && node_index < level_size - 1) {
+                    current = tree_level.front();
+                    tree_level.pop();
+                }
+
+                if (prev->left) {
+                    tree_level.push(prev->left);
+                }
+
+                if (prev->right) {
+                    tree_level.push(prev->right);
+                }
+
+                prev->next = current;
+                prev = current;
+            }
+
+        }
+        return root;
+    }
+
+    Node * connect(Node* root) {
+        return iterative_solution(root);
     }
 };
