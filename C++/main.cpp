@@ -3,7 +3,7 @@
 #include <thread>
 #include <csignal>
 #include "utils/pretty_print.h"
-#include "leetcode/island_perimeter.h"
+#include "leetcode/jump_game_2.h"
 
 
 template<typename T, typename U>
@@ -30,10 +30,12 @@ void segfaultHandler(int signum) {
 
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
+    std::vector<int32_t> source_1 = {2, 3, 1, 1, 4};
+    int32_t expected_1 = 2;
+    checkTestCase(Solution().jump(source_1), expected_1, "Test case 1");
 
-    std::vector<std::vector<int32_t>> input_1 = {{0,1,0,0},{1,1,1,0},{0,1,0,0},{1,1,0,0}};
-    checkTestCase(Solution().islandPerimeter(input_1), 16, "Test 1");
-    std::vector<std::vector<int32_t>> input_2 = {{1}};
-    checkTestCase(Solution().islandPerimeter(input_1), 16, "Test 2");
+    std::vector<int32_t> source_2 = {2, 3, 0, 1, 4};
+    int32_t expected_2 = 2;
+    checkTestCase(Solution().jump(source_2), expected_2, "Test case 2");
     return 0;
 }
