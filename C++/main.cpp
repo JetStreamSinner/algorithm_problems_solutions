@@ -3,7 +3,7 @@
 #include <thread>
 #include <csignal>
 #include "utils/pretty_print.h"
-#include "leetcode/jump_game_2.h"
+#include "leetcode/minimum_suffix_flips.h"
 
 
 template<typename T, typename U>
@@ -30,12 +30,22 @@ void segfaultHandler(int signum) {
 
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
-    std::vector<int32_t> source_1 = {2, 3, 1, 1, 4};
-    int32_t expected_1 = 2;
-    checkTestCase(Solution().jump(source_1), expected_1, "Test case 1");
 
-    std::vector<int32_t> source_2 = {2, 3, 0, 1, 4};
-    int32_t expected_2 = 2;
-    checkTestCase(Solution().jump(source_2), expected_2, "Test case 2");
+    std::string input_1 = "10111";
+    int32_t expected_1 = 3;
+    checkTestCase(Solution().minFlips(input_1), expected_1, "Test case 1");
+
+    std::string input_2 = "101";
+    int32_t expected_2 = 3;
+    checkTestCase(Solution().minFlips(input_2), expected_2, "Test case 2");
+
+    std::string input_3 = "00000";
+    int32_t expected_3 = 0;
+    checkTestCase(Solution().minFlips(input_3), expected_3, "Test case 3");
+
+    std::string input_4 = "10011111010101000011101010011001000";
+    int32_t expected_4 = 4;
+    checkTestCase(Solution().minFlips(input_4), expected_4, "Test case 4");
+
     return 0;
 }

@@ -3,6 +3,6 @@ project(Tasks)
 set(CMAKE_CXX_STANDARD 20)
 set(src main.cpp
         utils/pretty_print.h
-        leetcode/jump_game_2.h)
+        leetcode/minimum_suffix_flips.h)
 
 add_executable(${PROJECT_NAME} ${src})
