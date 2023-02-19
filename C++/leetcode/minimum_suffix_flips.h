@@ -37,14 +37,15 @@
 
 class Solution {
 public:
+    static constexpr char zero_character = '0';
+    static constexpr char one_character = '1';
+
     template<typename It>
     void flipRange(It first, It last)
     {
         static_assert(std::is_same<typename It::value_type, char>());
         assert(first <= last);
 
-        constexpr char zero_character = '0';
-        constexpr char one_character = '1';
         while (first < last) {
             *first = (*first == zero_character) ? (one_character) : (zero_character);
             first = std::next(first);
@@ -75,7 +76,7 @@ public:
     int minFlipsDirectSolution(std::string& source)
     {
         std::reverse(source.begin(), source.end());
-        std::string target(source.size(), '0');
+        std::string target(source.size(), zero_character);
 
         std::size_t counter = 0;
         while (target != source) {
@@ -87,7 +88,33 @@ public:
         return counter;
     }
 
+    int minFlipsRegsCalcSolution(std::string& source)
+    {
+        std::string target(source.size(), zero_character);
+
+        if (target == source) {
+            return 0;
+        }
+
+        std::size_t flipCounter = source.at(0) == one_character ? 1 : 0;
+        auto prev = source.begin();
+        auto current = std::next(prev);
+
+        const auto end = source.end();
+
+        while (current < end) {
+
+            if (*prev != *current) {
+                flipCounter++;
+            }
+
+            prev = current;
+            current = std::next(current);
+        }
+        return flipCounter;
+    }
+
     int minFlips(std::string& source) {
-        return minFlipsDirectSolution(source);
+        return minFlipsRegsCalcSolution(source);
     }
 };

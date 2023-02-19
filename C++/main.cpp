@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     checkTestCase(Solution().minFlips(input_3), expected_3, "Test case 3");
 
     std::string input_4 = "10011111010101000011101010011001000";
-    int32_t expected_4 = 4;
+    int32_t expected_4 = 20;
     checkTestCase(Solution().minFlips(input_4), expected_4, "Test case 4");
 
     return 0;
