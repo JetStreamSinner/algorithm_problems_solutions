@@ -3,6 +3,6 @@ project(Tasks)
 set(CMAKE_CXX_STANDARD 20)
 set(src main.cpp
         utils/pretty_print.h
-        leetcode/minimum_suffix_flips.h)
+        leetcode/coin_change.h)
 
 add_executable(${PROJECT_NAME} ${src})
