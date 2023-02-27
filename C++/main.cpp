@@ -3,7 +3,7 @@
 #include <thread>
 #include <csignal>
 #include "utils/pretty_print.h"
-#include "custom/square_submatrix.h"
+#include "custom/square_submatrix_2.h"
 
 
 template<typename T, typename U>
