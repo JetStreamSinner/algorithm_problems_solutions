@@ -3,7 +3,7 @@
 #include <thread>
 #include <csignal>
 #include "utils/pretty_print.h"
-#include "leetcode/coin_change.h"
+#include "custom/square_submatrix.h"
 
 
 template<typename T, typename U>
@@ -31,34 +31,23 @@ void segfaultHandler(int signum) {
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
 
-    std::vector<int32_t> input_coins_1 = {1, 2, 5};
-    int32_t input_amount_1 = 11;
-    int32_t expected_1 = 3;
-    checkTestCase(Solution().coinChange(input_coins_1, input_amount_1), expected_1, "Test case 1");
+    std::vector<std::vector<bool>> matrix_1 = {
+            {false, true, false, false},
+            {true,  true, true,  true},
+            {false, true, true,  false}
+    };
+    int32_t expected_1 = 2;
+    checkTestCase(Solution().squareSubmatrix(matrix_1), expected_1, "Test case 1");
 
-    std::vector<int32_t> input_coins_2 = {2};
-    int32_t input_amount_2 = 3;
-    int32_t expected_2 = -1;
-    checkTestCase(Solution().coinChange(input_coins_2, input_amount_2), expected_2, "Test case 2");
-
-    std::vector<int32_t> input_coins_3 = {2};
-    int32_t input_amount_3 = 3;
-    int32_t expected_3 = -1;
-    checkTestCase(Solution().coinChange(input_coins_3, input_amount_3), expected_3, "Test case 3");
-
-
-    // Ones and zeros cases
-//    std::vector<std::string> input_1 = {"10","0001","111001","1","0"};
-//    int32_t input_m_1 = 5;
-//    int32_t input_n_1 = 3;
-//    int32_t expected_1 = 4;
-//    checkTestCase(Solution().findMaxForm(input_1, input_m_1, input_n_1), expected_1, "Test 1");
-//
-//    std::vector<std::string> input_2 = {"10","0","1"};
-//    int32_t input_m_2 = 1;
-//    int32_t input_n_2 = 1;
-//    int32_t expected_2 = 2;
-//    checkTestCase(Solution().findMaxForm(input_2, input_m_2, input_n_2), expected_2, "Test 2");
+    std::vector<std::vector<bool>> matrix_2 = {
+            {true, true,  true,  true,  true},
+            {true, true,  true,  true,  false},
+            {true, true,  true,  true,  false},
+            {true, true,  true,  true,  false},
+            {true, false, false, false, false}
+    };
+    int32_t expected_2 = 4;
+    checkTestCase(Solution().squareSubmatrix(matrix_2), expected_2, "Test case 2");
 
     return 0;
 }

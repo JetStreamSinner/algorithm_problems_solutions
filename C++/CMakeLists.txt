@@ -3,6 +3,6 @@ project(Tasks)
 set(CMAKE_CXX_STANDARD 20)
 set(src main.cpp
         utils/pretty_print.h
-        leetcode/coin_change.h)
+        custom/square_submatrix.h)
 
 add_executable(${PROJECT_NAME} ${src})
