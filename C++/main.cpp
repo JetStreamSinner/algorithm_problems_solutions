@@ -3,7 +3,7 @@
 #include <thread>
 #include <csignal>
 #include "utils/pretty_print.h"
-#include "custom/square_submatrix_2.h"
+#include "custom/knapsack.h"
 
 
 template<typename T, typename U>
@@ -31,23 +31,11 @@ void segfaultHandler(int signum) {
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
 
-    std::vector<std::vector<bool>> matrix_1 = {
-            {false, true, false, false},
-            {true,  true, true,  true},
-            {false, true, true,  false}
-    };
-    int32_t expected_1 = 2;
-    checkTestCase(Solution().squareSubmatrix(matrix_1), expected_1, "Test case 1");
+    std::vector<Item> input_1 = { {2, 6}, {2, 10}, {3, 12}};
+    int32_t input_weight_1 = 5;
+    int32_t expected_1 = 22;
 
-    std::vector<std::vector<bool>> matrix_2 = {
-            {true, true,  true,  true,  true},
-            {true, true,  true,  true,  false},
-            {true, true,  true,  true,  false},
-            {true, true,  true,  true,  false},
-            {true, false, false, false, false}
-    };
-    int32_t expected_2 = 4;
-    checkTestCase(Solution().squareSubmatrix(matrix_2), expected_2, "Test case 2");
+    checkTestCase(Solution().knapsack(input_1, input_weight_1), expected_1, "Test case 1");
 
     return 0;
 }
