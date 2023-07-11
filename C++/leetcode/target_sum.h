@@ -24,20 +24,39 @@
 // Input: nums = [1], target = 1
 // Output: 1
 
+struct PairHash {
+public:
+    template<typename T1, typename T2>
+    int32_t operator()(const std::pair<T1, T2> &pair) const {
+        return std::hash<T1>{}(pair.first) ^ std::hash<T2>{}(pair.second);
+    }
+};
+
+template<typename T>
+struct SizeComparator {
+    bool operator()(const T &left, const T &right) const {
+        return (left.first == right.first && left.second == right.second);
+    }
+};
+
 class Solution
 {
 public:
     int32_t findTargetSumWays(std::vector<int32_t>& nums, int32_t target) const
     {
-        std::unordered_map<int32_t, int32_t> memo;
-        return findTargetSumWaysImpl(nums, target, 0);
+        std::unordered_map<std::pair<int32_t, int32_t>, int32_t, PairHash, SizeComparator<std::pair<int32_t, int32_t>>> memo;
+        return findTargetSumWaysImpl(nums, target, nums.size() - 1, 0, memo);
     }
 private:
-    int32_t findTargetSumWaysImpl(const std::vector<int32_t>& nums, int32_t target, int32_t index) const
+    int32_t findTargetSumWaysImpl(const std::vector<int32_t>& nums, int32_t target, int32_t index, int32_t currSum, std::unordered_map<std::pair<int32_t, int32_t>, int32_t, PairHash, SizeComparator<std::pair<int32_t, int32_t>>>& memo) const
     {
-        const int32_t traverseFinished = (nums.size() == index);
+        if (memo.count({index, currSum})) {
+            return memo.at({index, currSum});
+        }
 
-        if (traverseFinished && target == 0) {
+        const int32_t traverseFinished = (index < 0);
+
+        if (traverseFinished && currSum == target) {
             return 1;
         }
 
@@ -45,6 +64,10 @@ private:
             return 0;
         }
 
-        return findTargetSumWaysImpl(nums, target + nums.at(index), index + 1) + findTargetSumWaysImpl(nums, target - nums.at(index), index + 1);
+        const int32_t positive = findTargetSumWaysImpl(nums, target, index - 1, currSum + nums.at(index), memo);
+        const int32_t negative = findTargetSumWaysImpl(nums, target, index - 1, currSum - nums.at(index), memo);
+        memo[{index, currSum}] = positive + negative;
+
+        return memo[{index, currSum}];
     }
 };
