@@ -30,14 +30,14 @@ public:
     int32_t findTargetSumWays(std::vector<int32_t>& nums, int32_t target) const
     {
         std::unordered_map<int32_t, int32_t> memo;
-        return findTargetSumWaysImpl(nums, target, target, 0);
+        return findTargetSumWaysImpl(nums, target, 0);
     }
 private:
-    int32_t findTargetSumWaysImpl(const std::vector<int32_t>& nums, int32_t target, int32_t temp, int32_t index) const
+    int32_t findTargetSumWaysImpl(const std::vector<int32_t>& nums, int32_t target, int32_t index) const
     {
         const int32_t traverseFinished = (nums.size() == index);
 
-        if (traverseFinished && temp == 0) {
+        if (traverseFinished && target == 0) {
             return 1;
         }
 
@@ -45,6 +45,6 @@ private:
             return 0;
         }
 
-        return findTargetSumWaysImpl(nums, target, temp + nums.at(index), index + 1) + findTargetSumWaysImpl(nums, target, temp - nums.at(index), index + 1);
+        return findTargetSumWaysImpl(nums, target + nums.at(index), index + 1) + findTargetSumWaysImpl(nums, target - nums.at(index), index + 1);
     }
 };
