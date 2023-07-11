@@ -3,7 +3,7 @@
 #include <thread>
 #include <csignal>
 #include "utils/pretty_print.h"
-#include "leetcode/unique_paths.h"
+#include "leetcode/target_sum.h"
 
 
 template<typename T, typename U>
@@ -31,23 +31,15 @@ void segfaultHandler(int signum) {
 int main(int argc, char *argv[]) {
     signal(SIGSEGV, segfaultHandler);
 
-    int32_t m1 = 3;
-    int32_t n1 = 7;
-    int32_t expected1 = 28;
+    std::vector<int32_t> arr_1 = {1, 1, 1, 1, 1};
+    int32_t target_1 = 3;
+    int32_t expected_1 = 5;
+    checkTestCase(Solution().findTargetSumWays(arr_1, target_1), expected_1, "Test case 1");
 
-    checkTestCase(Solution().uniquePaths(m1, n1), expected1, "Test case 1");
-
-    int32_t m2 = 3;
-    int32_t n2 = 2;
-    int32_t expected2 = 3;
-
-    checkTestCase(Solution().uniquePaths(m2, n2), expected2, "Test case 2");
-
-    int32_t m3 = 16;
-    int32_t n3 = 16;
-    int32_t expected3 = 155117520;
-
-    checkTestCase(Solution().uniquePaths(m3, n3), expected3, "Test case 3");
+    std::vector<int32_t> arr_2 = {1};
+    int32_t target_2 = 1;
+    int32_t expected_2 = 1;
+    checkTestCase(Solution().findTargetSumWays(arr_2, target_2), expected_2, "Test case 2");
 
     return 0;
 }
