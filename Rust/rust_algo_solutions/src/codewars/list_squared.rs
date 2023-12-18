@@ -1,8 +1,8 @@
 pub fn list_squared_impl(m: u64, n: u64) -> Vec<(u64, u64)> {
     (m..n + 1)
-    .map(|i| (i, sum_squared_divs(i)))
-    .filter(|&(_, sq)| is_square(sq))
-    .collect()
+        .map(|i| (i, sum_squared_divs(i)))
+        .filter(|&(_, sq)| is_square(sq))
+        .collect()
 }
 
 fn is_square(n: u64) -> bool {
@@ -12,9 +12,15 @@ fn is_square(n: u64) -> bool {
 
 fn sum_squared_divs(n: u64) -> u64 {
     (1..)
-    .take_while(|i| i * i <= n)
-    .filter(|i| n % i == 0)
-    .fold(0, |acc, i| acc + (if i * i == n { n } else { i * i + (n / i) * (n / i) }))
+        .take_while(|i| i * i <= n)
+        .filter(|i| n % i == 0)
+        .fold(0, |acc, i| {
+            acc + (if i * i == n {
+                n
+            } else {
+                i * i + (n / i) * (n / i)
+            })
+        })
 }
 
 fn testing(m: u64, n: u64, exp: Vec<(u64, u64)>) -> () {
