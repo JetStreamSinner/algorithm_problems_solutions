@@ -1,6 +1,9 @@
 pub fn decode(roman: &str) -> u64 {
-
-    let roman_digits: Vec<i32> = roman.chars().rev().map(|roman_digit| map_to_arabic(roman_digit)).collect();
+    let roman_digits: Vec<i32> = roman
+        .chars()
+        .rev()
+        .map(|roman_digit| map_to_arabic(roman_digit))
+        .collect();
 
     if roman_digits.is_empty() {
         return 0;
@@ -11,7 +14,6 @@ pub fn decode(roman: &str) -> u64 {
     }
 
     let mut accumulator: u64 = 0;
-
 
     let mut index: usize = 0;
     while index < roman_digits.len() {
