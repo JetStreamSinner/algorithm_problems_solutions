@@ -1,4 +1,3 @@
-
 pub fn unique_in_order_impl<T>(sequence: T) -> Vec<T::Item>
 where
     T: std::iter::IntoIterator,
