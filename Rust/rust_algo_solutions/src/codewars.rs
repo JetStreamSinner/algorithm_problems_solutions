@@ -2,12 +2,15 @@ mod list_squared;
 mod multiplication_table;
 mod roman_decoder;
 mod unique_in_order;
+mod count_bits;
 
 mod codewars {
+    use super::count_bits::count_bits_impl;
     use super::list_squared;
     use super::multiplication_table;
     use super::roman_decoder;
     use super::unique_in_order;
+    use super::count_bits;
 
     pub fn roman_as_num(roman: &str) -> u64 {
         roman_decoder::decode(roman)
@@ -27,5 +30,9 @@ mod codewars {
 
     pub fn multiplication_table(len: usize) -> Vec<Vec<usize>> {
         multiplication_table::multiplication_table_impl(len)
+    }
+
+    pub fn count_bits(n: i64) -> u32 {
+        count_bits_impl(n)
     }
 }
